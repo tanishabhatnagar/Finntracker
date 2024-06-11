@@ -1,41 +1,44 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import { useGlobalContext } from '../context/globalContext';
 
 function History() {
-    const {transactionHistory} = useGlobalContext()
+    const { transactionHistory } = useGlobalContext();
 
-    const [...history] = transactionHistory()
+    const history = transactionHistory();
+
+    console.log("Transaction History:", history); // Log the history to check the data
 
     return (
         <HistoryStyled>
             <h2>Recent History</h2>
             {history.map((item) => {
-    const {_id, title, amount, type} = item;
-    const isExpense = type === 'expense';
-    const formattedAmount = `${isExpense ? '-' : '+'}${Math.abs(amount)}`;
+                const { _id, title, amount, type } = item;
+                return (
+                    <div key={_id} className="history-item">
+                        <p style={{
+                            color: type === 'expense' ? 'var(--color-red)' : 'var(--color-green)'
+                        }}>
+                            {title}
+                        </p>
 
-    return (
-        <div key={_id} className="history-item">
-            <p style={{ color: isExpense ? 'var(--color-red)' : 'var(--color-green)' }}>
-                {title}
-            </p>
-            <p style={{ color: isExpense ? 'var(--color-red)' : 'var(--color-green)' }}>
-                {formattedAmount}
-            </p>
-        </div>
-    );
-})}
-
+                        <p style={{
+                            color: type === 'expense' ? 'var(--color-red)' : 'var(--color-green)'
+                        }}>
+                            {type === 'expense' ? `-${amount}` : `+${amount}`}
+                        </p>
+                    </div>
+                );
+            })}
         </HistoryStyled>
-    )
+    );
 }
 
 const HistoryStyled = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    .history-item{
+    .history-item {
         background: #FCF6F9;
         border: 2px solid #FFFFFF;
         box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
@@ -44,7 +47,14 @@ const HistoryStyled = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+        .history-item {
+            width: 50%;
+        }
     }
 `;
 
-export default History
+export default History;

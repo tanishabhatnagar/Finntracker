@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useGlobalContext } from '../../context/globalContext';
 import Button from '../Button/Button';
 import { plus } from '../../utils/Icons';
+import { bitcoin, book,rupee, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
+
 
 
 function ExpenseForm() {

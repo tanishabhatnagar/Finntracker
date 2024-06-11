@@ -1,7 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import { dateFormat } from '../../utils/dateFormat';
-import { bitcoin, book,rupee, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
+import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
 import Button from '../Button/Button';
 
 function IncomeItem({
@@ -21,7 +21,7 @@ function IncomeItem({
             case 'salary':
                 return money;
             case 'freelancing':
-                return freelance
+                return freelance;
             case 'investments':
                 return stocks;
             case 'stocks':
@@ -35,9 +35,9 @@ function IncomeItem({
             case 'other':
                 return piggy;
             default:
-                return ''
+                return '';
         }
-    }
+    };
 
     const expenseCatIcon = () => {
         switch (category) {
@@ -58,11 +58,9 @@ function IncomeItem({
             case 'other':
                 return circle;
             default:
-                return ''
+                return '';
         }
-    }
-
-    console.log('type', type)
+    };
 
     return (
         <IncomeItemStyled indicator={indicatorColor}>
@@ -73,8 +71,8 @@ function IncomeItem({
                 <h5>{title}</h5>
                 <div className="inner-content">
                     <div className="text">
-                        <p>{rupee} {amount}</p>
-                        <p>{calender} {dateFormat(date)}</p>
+                        <p>{dollar} {amount}</p>
+                        <p className="date">{calender} {dateFormat(date)}</p>
                         <p>
                             {comment}
                             {description}
@@ -85,7 +83,7 @@ function IncomeItem({
                             icon={trash}
                             bPad={'1rem'}
                             bRad={'50%'}
-                            bg={'var(--primary-color'}
+                            bg={'var(--primary-color)'}
                             color={'#fff'}
                             iColor={'#fff'}
                             hColor={'var(--color-green)'}
@@ -95,7 +93,7 @@ function IncomeItem({
                 </div>
             </div>
         </IncomeItemStyled>
-    )
+    );
 }
 
 const IncomeItemStyled = styled.div`
@@ -110,6 +108,7 @@ const IncomeItemStyled = styled.div`
     gap: 1rem;
     width: 100%;
     color: #222260;
+
     .icon{
         width: 80px;
         height: 80px;
@@ -161,9 +160,60 @@ const IncomeItemStyled = styled.div`
                     color: var(--primary-color);
                     opacity: 0.8;
                 }
+                .date {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            i {
+                font-size: 2rem;
+            }
+        }
+
+        .content {
+            gap: 0.5rem;
+
+            h5 {
+                font-size: 1.1rem;
+                padding-left: 1rem;
+                &::before {
+                    width: 0.6rem;
+                    height: 0.6rem;
+                }
+            }
+
+            .inner-content {
+                flex-direction: row;
+                gap: 0.5rem;
+                justify-content: space-between;
+
+                .text {
+                    flex: 1;
+                    gap: 0.5rem;
+                    p {
+                        font-size: 1rem;
+                    }
+                    .date {
+                        display: none;
+                    }
+                }
+
+                .btn-con {
+                    align-self: flex-end;
+                }
             }
         }
     }
 `;
 
-export default IncomeItem
+export default IncomeItem;
