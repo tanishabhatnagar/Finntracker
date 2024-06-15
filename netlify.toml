@@ -1,7 +1,10 @@
-[build]
-  base = "frontend"
-  publish = "frontend/build"
+
+
+  [build]
   command = "npm install --legacy-peer-deps && npm run build"
+  publish = "frontend/build"
+  base = "frontend"
+
 
 
 [[redirects]]
